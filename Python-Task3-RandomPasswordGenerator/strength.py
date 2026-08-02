@@ -1,3 +1,6 @@
+import string
+
+
 def check_strength(password):
     score = 0
 
@@ -5,6 +8,9 @@ def check_strength(password):
         score += 1
 
     if len(password) >= 12:
+        score += 1
+
+    if len(password) >= 16:
         score += 1
 
     if any(c.islower() for c in password):
@@ -16,7 +22,7 @@ def check_strength(password):
     if any(c.isdigit() for c in password):
         score += 1
 
-    if any(not c.isalnum() for c in password):
+    if any(c in string.punctuation for c in password):
         score += 1
 
     if score <= 3:
